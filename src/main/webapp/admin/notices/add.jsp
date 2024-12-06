@@ -18,7 +18,9 @@
 			<tr>
 				<td align="center" bgColor="#f5fafe" class="ta_01">公告标题：</td>
 				<td class="ta_01" bgColor="#ffffff" colSpan="3">
-					<input type="text" name="title" class="bg" maxlength="10"/>
+					<label>
+						<input type="text" name="title" class="bg" maxlength="10"/>
+					</label>
 				</td>
 			</tr>
 			<tr>

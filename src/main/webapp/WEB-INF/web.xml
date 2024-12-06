@@ -44,6 +44,14 @@
         <url-pattern>/listProduct</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ListUserServlet</servlet-name>
+        <servlet-class>org.example.market.web.servlet.manager.ListUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListUserServlet</servlet-name>
+        <url-pattern>/listUser</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ShowProductByPageServlet</servlet-name>
         <servlet-class>org.example.market.web.servlet.client.ShowProductByPageServlet</servlet-class>
     </servlet>
@@ -178,6 +186,14 @@
     <servlet-mapping>
         <servlet-name>DeleteProductServlet</servlet-name>
         <url-pattern>/deleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <servlet-class>org.example.market.web.servlet.manager.DeleteUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <url-pattern>/deleteUser</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>FindOrderByManyConditionServlet</servlet-name>

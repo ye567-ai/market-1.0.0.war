@@ -1,7 +1,9 @@
 package org.example.market.service;
 import java.sql.SQLException;
+import java.util.List;
 import javax.security.auth.login.LoginException;
 import org.example.market.dao.UserDao;
+import org.example.market.domain.Order;
 import org.example.market.domain.User;
 import org.example.market.exception.RegisterException;
 
@@ -31,5 +33,21 @@ public class UserService {
 			throw new LoginException("登录失败");
 		}
 	}
-
+	public List<User> findAllUser() {
+		List<User> users = null;
+		try {
+			users = dao.findAllUser();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	//管理员删除操作
+	public void deleteUser(int id) {
+			try {
+				dao.deleteUser(id);
+			} catch (SQLException e) {
+				throw new RuntimeException("后台系统删除用户失败！");
+			}
+	}
 }
