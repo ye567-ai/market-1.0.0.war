@@ -67,13 +67,6 @@
 																		<img src="${pageContext.request.contextPath }/client/images/loginline.gif" width="241" height="10" />
 																	</td>
 																</tr>
-																<!-- <tr>
-																	<td colspan="2"
-																		style="padding-top:10px; text-align:center"><a
-																		href="register.jsp"><img name="image"
-																			src="images/signupbutton.gif" width="135" height="33" />
-																	</a></td>
-																</tr> -->
 															</table>
 														</td>
 													</tr>

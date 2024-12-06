@@ -8,7 +8,6 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String id; // 商品编号
 	private String name; // 名称
-//	private String author; //作者
 	private double price; // 价格
 	private String category; // 分类
 	private int pnum; // 数量
@@ -18,14 +17,6 @@ public class Product implements Serializable {
 	public String getId() {
 		return id;
 	}
-
-//	public String getAuthor() {
-//		return author;
-//	}
-//
-//	public void setAuthor(String author) {
-//		this.author = author;
-//	}
 
 	public void setId(String id) {
 		this.id = id;
@@ -67,7 +58,6 @@ public class Product implements Serializable {
 		return imgurl;
 	}
 
-	// a.jpg a_s.jpg
 	public String getImgurl_s() {
 		int index = imgurl.lastIndexOf("."); // 得到最的.的索引
 		String first = imgurl.substring(0, index);

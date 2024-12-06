@@ -33,7 +33,7 @@ public class MenuSearchServlet extends HttpServlet {
 			req.getRequestDispatcher("/showProductByPage").forward(req, resp);
 			return;
 		}
-		//调用service层的方法，通过书名模糊查询，查找相应的图书
+		//调用service层的方法，通过商品名模糊查询，查找相应的商品
 		ProductService service = new ProductService();
 		PageBean bean = service.findBookByName(currentPage,currentCount,searchfield);
 		// 将数据存储到request范围，跳转到product_search_list.jsp页面展示

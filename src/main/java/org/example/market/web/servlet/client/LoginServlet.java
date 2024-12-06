@@ -19,8 +19,6 @@ public class LoginServlet extends HttpServlet {
 		// 1.获取登录页面输入的用户名与密码
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		System.out.println(username);
-		System.out.println(password);
 		// 2.调用service完成登录操作。
 		UserService service = new UserService();
 		try {
@@ -42,7 +40,6 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("register_message", e.getMessage());
 			request.getRequestDispatcher("/client/login.jsp").forward(request, response);
-			return;
-		}
+        }
 	}
 }

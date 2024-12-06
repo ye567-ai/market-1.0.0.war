@@ -157,9 +157,7 @@ public class ProductDao {
 
 		String sql = "update products set pnum=pnum+? where id=?";
 		QueryRunner runner = new QueryRunner();
-
 		Object[][] params = new Object[items.size()][2];
-
 		for (int i = 0; i < params.length; i++) {
 			params[i][0] = items.get(i).getBuynum();
 			params[i][1] = items.get(i).getP().getId();
@@ -184,17 +182,15 @@ public class ProductDao {
 		return runner.query(sql, new ArrayListHandler());
 	}
 
-	//前台，用于搜索框根据书名来模糊查询相应的图书
+	//前台，用于搜索框根据商品名来模糊查询相应的商品
 	public List<Product> findBookByName(int currentPage, int currentCount, String searchfield) throws SQLException {
-		//根据名字模糊查询图书
+		//根据名字模糊查询商品
 		String sql = "SELECT * FROM products WHERE name LIKE '%"+searchfield+"%' LIMIT ?,?";
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
-//		//用于分页查询的数据
-//		Object obj = new Object[] { (currentPage - 1) * currentCount, currentCount };
 		return runner.query(sql, new BeanListHandler<Product>(Product.class),currentPage-1,currentCount);
 	}
 
-	//前台搜索框，根据书名模糊查询出的图书总数量
+	//前台搜索框，根据商品名模糊查询出的商品总数量
 	public int findBookByNameAllCount(String searchfield) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM products WHERE name LIKE '%"+searchfield+"%'";
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());

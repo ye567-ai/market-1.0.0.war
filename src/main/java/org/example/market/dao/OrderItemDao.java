@@ -42,32 +42,27 @@ public class OrderItemDao {
 
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 
-		return runner.query(sql, new ResultSetHandler<List<OrderItem>>() {
-			public List<OrderItem> handle(ResultSet rs) throws SQLException {
+		return runner.query(sql, rs -> {
 
-				List<OrderItem> items = new ArrayList<OrderItem>();
-				while (rs.next()) {
-					OrderItem item = new OrderItem();
+            List<OrderItem> items = new ArrayList<OrderItem>();
+            while (rs.next()) {
+                OrderItem item = new OrderItem();
+                item.setOrder(order);
+                item.setBuynum(rs.getInt("buynum"));
+                Product p = new Product();
+                p.setCategory(rs.getString("category"));
+                p.setId(rs.getString("id"));
+                p.setDescription(rs.getString("description"));
+                p.setImgurl(rs.getString("imgurl"));
+                p.setName(rs.getString("name"));
+                p.setPnum(rs.getInt("pnum"));
+                p.setPrice(rs.getDouble("price"));
+                item.setP(p);
+                items.add(item);
+            }
 
-					item.setOrder(order);
-					item.setBuynum(rs.getInt("buynum"));
-
-					Product p = new Product();
-					p.setCategory(rs.getString("category"));
-					p.setId(rs.getString("id"));
-					p.setDescription(rs.getString("description"));
-					p.setImgurl(rs.getString("imgurl"));
-					p.setName(rs.getString("name"));
-					p.setPnum(rs.getInt("pnum"));
-					p.setPrice(rs.getDouble("price"));
-					item.setP(p);
-
-					items.add(item);
-				}
-
-				return items;
-			}
-		}, order.getId());
+            return items;
+        }, order.getId());
 	}
 	//根据订单id删除订单项
 	public void delOrderItems(String id) throws SQLException {

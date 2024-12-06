@@ -48,24 +48,22 @@ public class OrderDao {
 	public List<Order> findOrderByUser(final User user) throws SQLException {
 		String sql = "select * from orders where user_id=?";
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
-		return runner.query(sql, new ResultSetHandler<List<Order>>() {
-			public List<Order> handle(ResultSet rs) throws SQLException {
-				List<Order> orders = new ArrayList<Order>();
-				while (rs.next()) {
-					Order order = new Order();
-					order.setId(rs.getString("id"));
-					order.setMoney(rs.getDouble("money"));
-					order.setOrdertime(rs.getDate("ordertime"));
-					order.setPaystate(rs.getInt("paystate"));
-					order.setReceiverAddress(rs.getString("receiverAddress"));
-					order.setReceiverName(rs.getString("receiverName"));
-					order.setReceiverPhone(rs.getString("receiverPhone"));
-					order.setUser(user);
-					orders.add(order);
-				}
-				return orders;
-			}
-		}, user.getId());
+		return runner.query(sql, rs -> {
+            List<Order> orders = new ArrayList<Order>();
+            while (rs.next()) {
+                Order order = new Order();
+                order.setId(rs.getString("id"));
+                order.setMoney(rs.getDouble("money"));
+                order.setOrdertime(rs.getDate("ordertime"));
+                order.setPaystate(rs.getInt("paystate"));
+                order.setReceiverAddress(rs.getString("receiverAddress"));
+                order.setReceiverName(rs.getString("receiverName"));
+                order.setReceiverPhone(rs.getString("receiverPhone"));
+                order.setUser(user);
+                orders.add(order);
+            }
+            return orders;
+        }, user.getId());
 	}
 	/**
 	 * 根据id查找订单信息
@@ -76,33 +74,31 @@ public class OrderDao {
 	public Order findOrderById(String id) throws SQLException {
 		String sql = "select * from orders,user where orders.user_id=user.id and orders.id=?";
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
-		return runner.query(sql, new ResultSetHandler<Order>() {
-			public Order handle(ResultSet rs) throws SQLException {
-				Order order = new Order();
-				while (rs.next()) {
-					order.setId(rs.getString("orders.id"));
-					order.setMoney(rs.getDouble("orders.money"));
-					order.setOrdertime(rs.getDate("orders.ordertime"));
-					order.setPaystate(rs.getInt("orders.paystate"));
-					order.setReceiverAddress(rs.getString("orders.receiverAddress"));
-					order.setReceiverName(rs.getString("orders.receiverName"));
-					order.setReceiverPhone(rs.getString("orders.receiverPhone"));
+		return runner.query(sql, rs -> {
+            Order order = new Order();
+            while (rs.next()) {
+                order.setId(rs.getString("orders.id"));
+                order.setMoney(rs.getDouble("orders.money"));
+                order.setOrdertime(rs.getDate("orders.ordertime"));
+                order.setPaystate(rs.getInt("orders.paystate"));
+                order.setReceiverAddress(rs.getString("orders.receiverAddress"));
+                order.setReceiverName(rs.getString("orders.receiverName"));
+                order.setReceiverPhone(rs.getString("orders.receiverPhone"));
 
-					User user = new User();
-					user.setId(rs.getInt("user.id"));
-					user.setEmail(rs.getString("user.email"));
-					user.setGender(rs.getString("user.gender"));
-					user.setIntroduce(rs.getString("user.introduce"));
-					user.setPassword(rs.getString("user.password"));
-					user.setRegistTime(rs.getDate("user.registtime"));
-					user.setRole(rs.getString("user.role"));
-					user.setTelephone(rs.getString("user.telephone"));
-					user.setUsername(rs.getString("user.username"));
-					order.setUser(user);
-				}
-				return order;
-			}
-		}, id);
+                User user = new User();
+                user.setId(rs.getInt("user.id"));
+                user.setEmail(rs.getString("user.email"));
+                user.setGender(rs.getString("user.gender"));
+                user.setIntroduce(rs.getString("user.introduce"));
+                user.setPassword(rs.getString("user.password"));
+                user.setRegistTime(rs.getDate("user.registtime"));
+                user.setRole(rs.getString("user.role"));
+                user.setTelephone(rs.getString("user.telephone"));
+                user.setUsername(rs.getString("user.username"));
+                order.setUser(user);
+            }
+            return order;
+        }, id);
 	}
 	/**
 	 *  查找所有订单
@@ -115,37 +111,35 @@ public class OrderDao {
 		//2.创建QueryRunner对象
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 		//3.返回QueryRunner对象query()方法的查询结果
-		return runner.query(sql, new ResultSetHandler<List<Order>>() {
-			public List<Order> handle(ResultSet rs) throws SQLException {
-				//创建订单集合
-				List<Order> orders = new ArrayList<Order>();
-				//循环遍历订单和用户信息
-				while (rs.next()) {
-					Order order = new Order();
-					order.setId(rs.getString("orders.id"));
-					order.setMoney(rs.getDouble("orders.money"));
-					order.setOrdertime(rs.getDate("orders.ordertime"));
-					order.setPaystate(rs.getInt("orders.paystate"));
-					order.setReceiverAddress(rs.getString("orders.receiverAddress"));
-					order.setReceiverName(rs.getString("orders.receiverName"));
-					order.setReceiverPhone(rs.getString("orders.receiverPhone"));
-					orders.add(order);
+		return runner.query(sql, rs -> {
+            //创建订单集合
+            List<Order> orders = new ArrayList<Order>();
+            //循环遍历订单和用户信息
+            while (rs.next()) {
+                Order order = new Order();
+                order.setId(rs.getString("orders.id"));
+                order.setMoney(rs.getDouble("orders.money"));
+                order.setOrdertime(rs.getDate("orders.ordertime"));
+                order.setPaystate(rs.getInt("orders.paystate"));
+                order.setReceiverAddress(rs.getString("orders.receiverAddress"));
+                order.setReceiverName(rs.getString("orders.receiverName"));
+                order.setReceiverPhone(rs.getString("orders.receiverPhone"));
+                orders.add(order);
 
-					User user = new User();
-					user.setId(rs.getInt("user.id"));
-					user.setEmail(rs.getString("user.email"));
-					user.setGender(rs.getString("user.gender"));
-					user.setIntroduce(rs.getString("user.introduce"));
-					user.setPassword(rs.getString("user.password"));
-					user.setRegistTime(rs.getDate("user.registtime"));
-					user.setRole(rs.getString("user.role"));
-					user.setTelephone(rs.getString("user.telephone"));
-					user.setUsername(rs.getString("user.username"));
-					order.setUser(user);
-				}
-				return orders;
-			}
-		});
+                User user = new User();
+                user.setId(rs.getInt("user.id"));
+                user.setEmail(rs.getString("user.email"));
+                user.setGender(rs.getString("user.gender"));
+                user.setIntroduce(rs.getString("user.introduce"));
+                user.setPassword(rs.getString("user.password"));
+                user.setRegistTime(rs.getDate("user.registtime"));
+                user.setRole(rs.getString("user.role"));
+                user.setTelephone(rs.getString("user.telephone"));
+                user.setUsername(rs.getString("user.username"));
+                order.setUser(user);
+            }
+            return orders;
+        });
 	}
 	/**
 	 *  根据订单号修改订单状态

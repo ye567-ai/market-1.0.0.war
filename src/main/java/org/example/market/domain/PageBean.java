@@ -12,7 +12,7 @@ public class PageBean implements Serializable{
 	private int currentCount;// 每页条数
 	private List<Product> ps;// 每页显示的数据
 	private String category;//类别
-	private String searchfield;//模糊搜索的图书名
+	private String searchfield;//模糊搜索的商品名
 
 	public String getCategory() {
 		return category;

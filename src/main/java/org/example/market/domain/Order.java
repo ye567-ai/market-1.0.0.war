@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
-
 	private String id; // 订单编号
 	private double money; // 订单总价
 	private String receiverAddress; // 送货地址
@@ -13,7 +12,6 @@ public class Order {
 	private String receiverPhone; // 收货人电话
 	private int paystate; // 订单状态
 	private Date ordertime; // 下单时间
-
 	private User user; // 订单所属用户
 
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();

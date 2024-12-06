@@ -18,7 +18,6 @@ public class UserDao {
 		}
 	}
 
-
 	//根据用户名与密码查找用户
 	public User findUserByUsernameAndPassword(String username, String password) throws SQLException {
 		String sql="select * from user where username=? and password=?";

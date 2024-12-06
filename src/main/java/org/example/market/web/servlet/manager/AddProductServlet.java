@@ -40,8 +40,7 @@ public class AddProductServlet extends HttpServlet {
 
 		DiskFileItemFactory dfif = new DiskFileItemFactory();
 		// 设置临时文件存储位置
-		dfif.setRepository(new File(this.getServletContext().getRealPath(
-				"/temp")));
+		dfif.setRepository(new File(this.getServletContext().getRealPath("/temp")));
 		// 设置上传文件缓存大小为10m
 		dfif.setSizeThreshold(1024 * 1024 * 10);
 		// 创建上传组件
@@ -107,11 +106,9 @@ public class AddProductServlet extends HttpServlet {
 			service.addProduct(p);
 			response.sendRedirect(request.getContextPath()
 					+ "/listProduct");
-			return;
-		} catch (AddProductException e) {
+        } catch (AddProductException e) {
 			e.printStackTrace();
 			response.getWriter().write("添加商品失败");
-			return;
-		}
+        }
 	}
 }

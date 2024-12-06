@@ -47,13 +47,6 @@ public class OrderService {
 			// 查找出订单信息
 			orders = odao.findOrderByUser(user);
 
-			// // 查找出订单项信息.
-			// for (Order order : orders) {
-			// List<OrderItem> items = oidao.findOrderItemByOrder(order);
-			// //查找到订单中的订单项信息
-			//
-			// order.setOrderItems(items);
-			// }
 
 		} catch (SQLException e) {
 			e.printStackTrace();

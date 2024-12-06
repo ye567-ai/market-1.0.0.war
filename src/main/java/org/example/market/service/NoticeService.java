@@ -39,7 +39,6 @@ public class NoticeService {
 		try {
 			dao.updateNotice(bean);
 		} catch (SQLException e) {
-//			throw new RuntimeException("根据id修改公告失败！");
 			e.printStackTrace();
 		}
 	}

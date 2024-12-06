@@ -22,7 +22,6 @@ public class UserService {
 		try {
 			//根据登录时表单输入的用户名和密码，查找用户
 			User user = dao.findUserByUsernameAndPassword(username, password);
-			//如果找到，还需要确定用户是否为激活用户
 			if (user != null) {
 					return user;
 			}

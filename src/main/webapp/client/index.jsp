@@ -14,8 +14,7 @@
 <body class="main">
 	<%@include file="head.jsp"%>
 	<%@include file="menu_search.jsp" %>
-
-	<!-- 图书商场首页轮播图  start -->
+	<!-- 商品商场首页轮播图  start -->
 	<div id="box_autoplay">
     	<div class="list">
         	<ul>
@@ -27,7 +26,7 @@
         	</ul>
     	</div>
 	</div>
-	<!-- 图书商场首页轮播图  end -->	
+	<!-- 商品商场首页轮播图  end -->
 	<div id="divcontent">
 		<table width="900px" border="0" cellspacing="0">
 			<tr>
