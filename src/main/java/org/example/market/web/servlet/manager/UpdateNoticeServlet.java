@@ -1,6 +1,7 @@
 package org.example.market.web.servlet.manager;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,6 +19,7 @@ import org.example.market.service.NoticeService;
  */
 public class UpdateNoticeServlet extends HttpServlet{
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
