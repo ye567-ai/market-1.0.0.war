@@ -1,1 +1,14 @@
 202230443262 叶晋江 src.main中是主要代码，其中的java是后端的各种管理类，其中模块报告中有说明，resources里面是与数据库连接相关的信息，webapp里是前端相关的jsp页面，css等
+后端模块主要分为7个模块
+Dao：dao包内的java文件为与数据库交互的类
+Domain：domain内的实体类
+Exception：exception中的类用于处理异常情况
+Service：service中的类主要用于编写业务逻辑，并通过调用dao层的方法操作数据库
+Tag：tag中只有一个类，作用是检查用户登录状态并对用户是否登录做不同处理
+Utils：utils中的是该项目要用到的工具类
+Web：web中包含filter和Servlet。其中filter负责统一编码和判断用户权限，Servlet中的类有分为managerServlet和ClientServlet
+前端模块
+Admin：里面包含的是和管理员相关的前端页面内容
+Client：里面包含与用户相关的jsp页面文件以及css、js、图片等
+Error：里面是当权限不足时触发的jsp页面
+Productimg：里面是商品相关的图片
